@@ -1,0 +1,41 @@
+.input-button {
+  cursor: pointer;
+  border: solid gray 1px;
+  border-radius: 5px;
+  text-align: center;
+  background-color: #600f60;
+  color: white;
+  font-size: 20px;
+  padding: 0.6em;
+  // margin: 1px;
+
+  &:hover {
+    border-color: white;
+  }
+
+  &:active {
+    background-color: #932693;
+  }
+}
+
+.keyboard-container {
+  padding: 1em;
+  position: fixed;
+  width: 450px;
+  bottom: 0;
+  padding-bottom: 1em;
+  background-color: rgb(36, 32, 32) !important;
+}
+
+.disabled {
+  background-color: #600f6021;
+  cursor: no-drop;
+
+  &:hover {
+    border-color: gray !important;
+  }
+
+  &:active {
+    background-color: #600f6021;
+  }
+}
