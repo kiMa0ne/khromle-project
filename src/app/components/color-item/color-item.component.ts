@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { GameState } from '../store/game.reducer';
-import { selectGameCurrentStatus, selectPersistance } from '../store/game.selectors';
+import { GameState } from '../../store/game.reducer';
+import { selectGameCurrentStatus, selectPersistance } from '../../store/game.selectors';
 import { ToastrService } from 'ngx-toastr'
 
 @Component({

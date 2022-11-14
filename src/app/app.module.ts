@@ -3,11 +3,11 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ColorItemComponent } from './color-item/color-item.component';
+import { ColorItemComponent } from './components/color-item/color-item.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { InputItems } from './input-items/input-items.component';
-import { VirtualKeyboardComponent } from './virtual-keyboard/virtual-keyboard.component';
-import { UserAttemptsComponent } from './user-attempts/user-attempts.component';
+import { InputItems } from './components/input-items/input-items.component';
+import { VirtualKeyboardComponent } from './components/virtual-keyboard/virtual-keyboard.component';
+import { UserAttemptsComponent } from './components/user-attempts/user-attempts.component';
 import { StoreModule } from '@ngrx/store';
 import { gameReducer } from './store/game.reducer';
 import { ToastrModule } from 'ngx-toastr';

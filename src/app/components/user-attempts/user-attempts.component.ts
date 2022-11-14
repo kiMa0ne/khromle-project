@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { GameState } from '../store/game.reducer';
-import { selectGameSolution, selectUserAttempts } from '../store/game.selectors';
+import { GameState } from '../../store/game.reducer';
+import { selectGameSolution, selectUserAttempts } from '../../store/game.selectors';
 @Component({
   selector: 'app-user-attempts',
   templateUrl: './user-attempts.component.html',
