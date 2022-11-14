@@ -1,8 +1,8 @@
-<div class="container keyboard-container">
+<div class="keyboard-container">
   <div class="row">
     <div class="col-10">
       <div class="row">
-        <div class="col-4 input-button" (click)="handlePlayBack()">Canc</div>
+        <div class="col-4 input-button" (click)="handlePlayBack()">Del</div>
         <div class="col-2 input-button" *ngFor="let inputBoxValue of availableInputs" (click)="handlePlayDigit(inputBoxValue)">
           {{ inputBoxValue }}
         </div>

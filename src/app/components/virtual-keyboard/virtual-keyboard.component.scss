@@ -21,8 +21,10 @@
 .keyboard-container {
   padding: 1em;
   position: fixed;
-  width: 450px;
+  width: calc(100vh - 519px);
   bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 0%);
   padding-bottom: 1em;
   background-color: rgb(36, 32, 32) !important;
 }
