@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import ColorHash from 'color-hash'
 import { addUserAttempt, resetUserAttempts, setGameStatus, setSolution, setUserAttempts } from './store/game.actions';
 import { Store } from '@ngrx/store';
 import { GameState } from './store/game.reducer';
 import { selectGameCurrentStatus, selectPersistance, selectUserAttempts } from './store/game.selectors';
 import { ToastrService } from 'ngx-toastr'
+import { NgNavigatorShareService } from 'ng-navigator-share';
+import { UserAttemptsComponent } from './components/user-attempts/user-attempts.component';
 
 @Component({
   selector: 'app-root',
@@ -23,7 +25,13 @@ export class AppComponent implements OnInit{
   public gameStatus$ = this.store.select(selectGameCurrentStatus)
   gameStatus: any
 
-  constructor(private store: Store <GameState>, public toastr: ToastrService) {}
+  private ngNavigatorShareService: NgNavigatorShareService
+
+  @ViewChild(UserAttemptsComponent) userAttemptsComponent: UserAttemptsComponent
+
+  constructor(private store: Store <GameState>, public toastr: ToastrService, ngNavigatorShareService: NgNavigatorShareService) {
+    this.ngNavigatorShareService = ngNavigatorShareService
+  }
 
   ngOnInit() {
     //STORE
@@ -104,5 +112,42 @@ export class AppComponent implements OnInit{
 
   getUserStringValue() {
     return this.userString.join("")
+  }
+
+  generateCanvas() {
+
+  }
+
+  async shareVictory() {
+    const canvas = this.userAttemptsComponent.generateCanvas()
+    const dataUrl = canvas.toDataURL()
+    const blob = await (await fetch(dataUrl)).blob()
+    const filesArray = [
+      new File(
+        [blob],
+        'animation.png',
+        {
+          type: blob.type,
+          lastModified: new Date().getTime()
+        }
+      )
+    ]
+
+    if (!this.ngNavigatorShareService.canShare()) {
+      alert(`This service/api is not supported in your Browser`)
+      return
+    }
+
+    this.ngNavigatorShareService.share({
+      title: 'I WON!!!',
+      text: `I beat the game after ${this.userAttempts.length} attempts`,
+      url: 'https://khromle-project.vercel.app/',
+      files: filesArray
+    }).then( (response) => {
+      console.log(response)
+    })
+    .catch( (error) => {
+      console.log(error)
+    })
   }
 }

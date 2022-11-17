@@ -15,20 +15,15 @@
       <div class="row">
         <div class="col-12 d-flex align-items-center flex-column guess-color-box">
           <!-- COLOR TO BE GUESSED -->
-          <app-color-item
-            class="w-100 mt-2"
-          >
-          </app-color-item>
+          <app-color-item (handleShareVictory)="shareVictory()" class="w-100 mt-2"></app-color-item>
 
           {{ color }}
-
 
           <button (click)="resetGuesses()">RESET BTN</button>
 
           <!-- USER GUESS TRIES -->
           <div class="col-12 play-container">
-            <app-user-attempts class="w-100">
-            </app-user-attempts>
+            <app-user-attempts class="w-100"></app-user-attempts>
           </div>
 
         </div>

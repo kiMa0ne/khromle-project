@@ -1,9 +1,9 @@
 import { createReducer, on } from "@ngrx/store";
-import { addUserAttempt, resetUserAttempts, setGameStatus, setSolution, setUserAttempts } from "./game.actions";
+import { addUserAttempt, resetUserAttempts, setGameStatus, setSolution, setUnusedProperty, setUserAttempts } from "./game.actions";
 
 export interface GameState {
 
-  unusedProperty: 0,
+  unusedProperty: any,
 
   persistance: PersistanceState
 }
@@ -81,7 +81,10 @@ export const gameReducer = createReducer(
     }
   }),
 
-
-
-
+  on(setUnusedProperty, (state, { unusedProperty }) => {
+    return {
+      ...state,
+      unusedProperty: unusedProperty
+    }
+  })
 )

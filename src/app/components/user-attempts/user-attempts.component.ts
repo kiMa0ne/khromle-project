@@ -18,6 +18,7 @@ export class UserAttemptsComponent implements OnInit {
   colorArray: any = []
 
   public userAttempts$ = this.store.select(selectUserAttempts)
+  userAttempts
   public colorToGuess$ = this.store.select(selectGameSolution)
 
   constructor(private store: Store<GameState>) {
@@ -26,6 +27,8 @@ export class UserAttemptsComponent implements OnInit {
   ngOnInit(): void {
     this.colorToGuess$.subscribe(colorToGuess => this.colorToGuess = colorToGuess)
     this.colorArray = this.colorToGuess.split("").slice(1)
+
+    this.userAttempts$.subscribe(userAttempts => this.userAttempts = userAttempts)
   }
 
   convertColorStringToArray(colorString: string) {
@@ -58,5 +61,25 @@ export class UserAttemptsComponent implements OnInit {
       default: return "incorrect-input"
     }
 
+  }
+
+  generateCanvas() {
+
+    let canvasElement = document.createElement('canvas') as  HTMLCanvasElement
+    canvasElement.setAttribute("style", "width: 500px")
+    canvasElement.height = this.userAttempts.length * 50
+
+    let ctx: any[] = []
+
+    for (let i = 0; i < this.userAttempts.length; i++) {
+      ctx[i] = canvasElement?.getContext("2d");
+      ctx[i].beginPath(); 
+      ctx[i].fillStyle = this.userAttempts[i];
+      ctx[i].fillRect(0, (i)*50, window.innerWidth, 50);
+    }
+
+    return canvasElement
+
+    // document.body.appendChild(canvasElement)
   }
 }

@@ -7,3 +7,5 @@ export const resetUserAttempts = createAction('[App Component] RESET Attempts')
 export const setGameStatus = createAction('[App Component] SET Game Status', props<{ gameStatus: string }>())
 
 export const setSolution = createAction('[App Component] SET Game Solution', props<{ solution: string }>())
+
+export const setUnusedProperty = createAction('[App Component] SET Unused Propery', props<{ unusedProperty: any }>())

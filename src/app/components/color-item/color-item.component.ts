@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ElementRef, ViewChild, Output, EventEmitter } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { GameState } from '../../store/game.reducer';
 import { selectGameCurrentStatus, selectPersistance } from '../../store/game.selectors';
@@ -20,10 +20,11 @@ export class ColorItemComponent implements OnInit {
 
   private ngNavigatorShareService: NgNavigatorShareService
 
-  @ViewChild('shareBtn') elementTest: ElementRef;
-
   persistanceState: any
   gameStatus: any
+
+  
+  @Output() handleShareVictory = new EventEmitter<any>()
 
   constructor(private store: Store<GameState>, public toastr: ToastrService, ngNavigatorShareService: NgNavigatorShareService) {
     this.ngNavigatorShareService = ngNavigatorShareService;
@@ -39,38 +40,23 @@ export class ColorItemComponent implements OnInit {
   }
 
   shareVictory() {
-    if (!this.ngNavigatorShareService.canShare()) {
-      alert(`This service/api is not supported in your Browser`);
-      return;
-    }
+    this.handleShareVictory.emit()
 
-    this.ngNavigatorShareService.share({
-      title: 'I WON!!!',
-      text: `I beat the game after ${this.persistanceState.userAttempts.length} attempts`,
-      url: 'https://khromle-project.vercel.app/',
-      files: []
-    }).then( (response) => {
-      console.log(response);
-    })
-    .catch( (error) => {
-      console.log(error);
-    });
+    // if (!this.ngNavigatorShareService.canShare()) {
+    //   alert(`This service/api is not supported in your Browser`)
+    //   return
+    // }
 
-    // this.toastr.success("Copied to clipboard")
-    // console.log("TEST: ", this.elementTest)
+    // this.ngNavigatorShareService.share({
+    //   title: 'I WON!!!',
+    //   text: `I beat the game after ${this.persistanceState.userAttempts.length} attempts`,
+    //   url: 'https://khromle-project.vercel.app/',
+    //   files: []
+    // }).then( (response) => {
+    //   console.log(response)
+    // })
+    // .catch( (error) => {
+    //   console.log(error)
+    // })
   }
-  
-  // generateImage(){
-  //   var node:any = document.getElementById('image-section');
-  //   htmlToImage.toPng(node)
-  //     .then(function (dataUrl) {
-  //       var img = new Image();
-  //       img.src = dataUrl;
-  //       document.body.appendChild(img);
-  //     })
-  //     .catch(function (error) {
-  //       console.error('oops, something went wrong!', error);
-  //     });
-  // }
-
 }

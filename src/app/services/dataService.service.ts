@@ -6,27 +6,11 @@ import * as htmlToImage from 'html-to-image'
   providedIn: 'root'
 })
 export class DataService {
-  
-  // private htmlElement$ = new BehaviorSubject<any>({});
-  // htmlElement$ = this.htmlElement$.asObservable();
 
-  // setProduct(product: any) {
-  //   this.product$.next(product);
-  // }
+  constructor() {}
 
-  imgToBeShared
-
-  constructor() { }
-  
-  generateImage(node) {
-    htmlToImage.toPng(node).then(dataUrl => {
-        let img = new Image()
-        img.src = dataUrl
-
-        this.imgToBeShared = img
-    }).catch(error => {
-      console.error('Could not convert html to png', error)
-    })
-  }
+  // 1) Called by the share function
+  // 2) Generate the cavas by calling the user-attempts' function
+  // 3) Return to the color-item component the generated canvas.
 
 }

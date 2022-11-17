@@ -23,3 +23,8 @@ export const selectGameSolution = createSelector(
   selectPersistance,
   (state: PersistanceState) => state.solution
 )
+
+export const selectUnusedProperty = createSelector(
+  selectGameState,
+  (state: GameState) => state.unusedProperty
+)
