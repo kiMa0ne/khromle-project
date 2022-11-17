@@ -1,9 +1,7 @@
 <div class="container">
-  <ul class="row mb-0">
+  <ul class="row mb-0" #userAttempts id="userAttempts">
     <li class="col-12 px-1 mt-2 user-attempt-list-item" *ngFor="let userAttempt of userAttempts$ | async; let i = index">
-      <!-- <div [style.background-color]="userAttempt" class="mt-1 user-attempt d-flex justify-content-between px-5 pt-3"> -->
       <div [style.background-color]="userAttempt" class="user-attempt-grid">
-        <!-- <div class="user-attempt-char d-flex flex-column" *ngFor="let colorChar of convertColorStringToArray(userAttempt); let j = index"> -->
         <div class="user-attempt-item" *ngFor="let colorChar of convertColorStringToArray(userAttempt); let j = index">
           <p>{{ colorChar }}</p>
           <div class="tip-box" [ngClass]="getTipClassFromColorChar(convertColorStringToArray(userAttempt), j)">

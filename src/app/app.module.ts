@@ -11,6 +11,7 @@ import { UserAttemptsComponent } from './components/user-attempts/user-attempts.
 import { StoreModule } from '@ngrx/store';
 import { gameReducer } from './store/game.reducer';
 import { ToastrModule } from 'ngx-toastr';
+import { DataService } from './services/dataService.service';
 // import { CommonModule } from '@angular/common';
 
 @NgModule({
@@ -35,7 +36,7 @@ import { ToastrModule } from 'ngx-toastr';
       tapToDismiss: true
     }),
   ],
-  providers: [],
+  providers: [DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
