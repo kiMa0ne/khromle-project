@@ -3,8 +3,17 @@
   <div class="row">
     <div class="col-12 col-md-4 container h-100">
       <div class="row">
-        <div class="col-12 d-flex justify-content-center">
-          <h1>Khromle</h1>
+        <div class="col-12 my-3 d-flex justify-content-center">
+          <i class="bi bi-info-circle mt-2 me-2" style="cursor: pointer; font-size: 20px;" (click)="openPopup()"></i>
+          <div class="title-box mt-2">
+            <span style="color: #B83280;" >K</span>
+            <span style="color: #3182ce;" >h</span>
+            <span style="color: #6B46C1;" >r</span>
+            <span style="color: #ECC94B;" >o</span>
+            <span style="color: #D69E2E;" >m</span>
+            <span style="color: #F687B3;" >l</span>
+            <span style="color: #9F7AEA;" >e</span>
+          </div>
         </div>
       </div>
 
@@ -17,21 +26,144 @@
           <!-- COLOR TO BE GUESSED -->
           <app-color-item (handleShareVictory)="shareVictory()" class="w-100 mt-2"></app-color-item>
 
-          {{ color }}
+          <!-- {{ color }} -->
 
-          <button (click)="resetGuesses()">RESET BTN</button>
+          <!-- <button (click)="resetGuesses()">RESET BTN</button> -->
 
           <!-- USER GUESS TRIES -->
-          <div class="col-12 play-container">
+          <div class="col-12 min-vh-50 play-container">
             <app-user-attempts class="w-100"></app-user-attempts>
+          </div>
+
+          <div class="col-12">
+            <app-virtual-keyboard 
+              *ngIf="gameStatus !== 'VICTORY'" 
+              (handleInput)="handlePlayDigit($event)" 
+              (handleDelete)="handlePlayBack()" 
+              (handleSubmit)="handlePlaySubmit()" 
+              [userString]="getUserStringValue()"
+            >
+            </app-virtual-keyboard>
           </div>
 
         </div>
       </div>
+      
+
 
     </div>
   </div>
 </div>
 
-<app-virtual-keyboard *ngIf="gameStatus !== 'VICTORY'" (handleInput)="handlePlayDigit($event)" (handleDelete)="handlePlayBack()" (handleSubmit)="handlePlaySubmit()" [userString]="getUserStringValue()">
-</app-virtual-keyboard>
+<div class="modal modal-container" tabindex="-1" role="dialog" [ngStyle]="{'display': dialogDisplay}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header pb-1 ">
+        <h2 class="modal-title mb-0">Welcome to Khromle</h2>
+        <button #closeBtn class="float-right close-modal-btn" (click)="closePopup()">X</button>
+      </div>
+      <div class="modal-body">
+        <p class="mb-1">Khromle is a TAROKKATA of Chromle, a Wordl inspired game of colours! The objective is to guess the <b style="color: red">R</b><b style="color: green">G</b><b style="color: blue">B</b> code of the colour displayed in the central panel. 
+          Every day you will be given a new colour to guess. Today's colour is
+        </p>
+        <div class="today-color" [style.background-color]="color"></div>
+
+        <p class="mt-1">With each guess you will receive hints guiding you towards the answer in the form of colours under the groups (<b style="color: red">R</b>, <b style="color: green">G</b> and <b style="color: blue">B</b>) or the digits of your guess. 
+          <mark class="highlighted-color" style="background-color: green; font-size: 16px;"><b>GREEN</b></mark> groups are quite correct, and <mark class="highlighted-color" style="background-color: yellow; font-size: 16px;"><b>YELLOW</b></mark> groups are very, very close. <mark class="highlighted-color" style="background-color: orange; font-size: 16px;"><b>ORANGE</b></mark> ones mean they are practically the same number as the target group, 
+          while <mark class="highlighted-color" style="background-color: red; font-size: 16px;"><b>RED</b></mark> groups are a little off but still in reach. <mark class="highlighted-color" style="background-color: purple; font-size: 16px;"><b>PURPLE</b></mark> identifies digits that would have been or are correct in a different position but is only 
+          shown when no other hints are present for the digit or group in that position. <mark class="highlighted-color" style="background-color: white; font-size: 16px; color: black"><b>WHITE</b></mark> digits are entirely incorrect.
+        </p>
+
+        <ul>
+          <li class="col-12 px-1 mt-2 user-attempt-list-item">
+            <div style="background-color: #FA3436" class="user-attempt-grid">
+              <div class="user-attempt-item">
+                <p>F</p>
+                <div class="tip-box very-very-close-input">
+                </div>
+              </div>
+              <div class="user-attempt-item">
+                <p>A</p>
+                <div class="tip-box very-very-close-input">
+                </div>
+              </div>
+              <div class="user-attempt-item">
+                <p>3</p>
+                <div class="tip-box incorrect-input">
+                </div>
+              </div>
+              <div class="user-attempt-item">
+                <p>4</p>
+                <div class="tip-box bad-position-input">
+                </div>
+              </div>
+              <div class="user-attempt-item">
+                <p>3</p>
+                <div class="tip-box very-close-input">
+                </div>
+              </div>
+              <div class="user-attempt-item">
+                <p>6</p>
+                <div class="tip-box very-close-input">
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+
+        <p>The game is over when you have guessed the correct colour code. Which, for the previous example, would have been:</p>
+        
+        <ul>
+          <li class="col-12 px-1 mt-2 user-attempt-list-item">
+            <div style="background-color: #FBFB46" class="user-attempt-grid">
+              <div class="user-attempt-item">
+                <p style="color: black">F</p>
+                <div class="tip-box correct-input">
+                </div>
+              </div>
+              <div class="user-attempt-item">
+                <p style="color: black">B</p>
+                <div class="tip-box correct-input">
+                </div>
+              </div>
+              <div class="user-attempt-item">
+                <p style="color: black">F</p>
+                <div class="tip-box correct-input">
+                </div>
+              </div>
+              <div class="user-attempt-item">
+                <p style="color: black">B</p>
+                <div class="tip-box correct-input">
+                </div>
+              </div>
+              <div class="user-attempt-item">
+                <p style="color: black">4</p>
+                <div class="tip-box correct-input">
+                </div>
+              </div>
+              <div class="user-attempt-item">
+                <p style="color: black">6</p>
+                <div class="tip-box correct-input">
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="modal-footer d-flex justify-content-between">
+        <a style="text-decoration: none" href="https://chromle.vercel.app/" target="_blank">
+          <span style="color: #B83280; font-size: 20px; font-weight: bold;">C</span>
+          <span style="color: #3182ce; font-size: 20px; font-weight: bold;">h</span>
+          <span style="color: #6B46C1; font-size: 20px; font-weight: bold;">r</span>
+          <span style="color: #ECC94B; font-size: 20px; font-weight: bold;">o</span>
+          <span style="color: #D69E2E; font-size: 20px; font-weight: bold;">m</span>
+          <span style="color: #F687B3; font-size: 20px; font-weight: bold;">l</span>
+          <span style="color: #9F7AEA; font-size: 20px; font-weight: bold;">e</span>
+        </a>
+        <button type="button" class="btn btn-success" (click)="closePopup()">
+          Play!
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

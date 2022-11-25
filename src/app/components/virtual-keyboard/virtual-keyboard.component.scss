@@ -1,20 +1,46 @@
 .input-button {
   cursor: pointer;
-  border: solid gray 1px;
+  border: solid transparent 1px;
   border-radius: 5px;
   text-align: center;
   background-color: #600f60;
   color: white;
   font-size: 20px;
   padding: 0.6em;
+  margin: 2px;
   // margin: 1px;
 
   &:hover {
     border-color: white;
+    background-color: #812693;
+     &.disabled {
+      background-color: #600f6021;
+     }
+    
+    // background-color: #600f6021;
   }
 
   &:active {
     background-color: #932693;
+  }
+
+  &.enter-button {
+
+    border-color: fuchsia;
+    
+    &.disabled {
+      background-color: #600f6021;
+      border-color: transparent;
+      cursor: no-drop;
+  
+      &:hover {
+        border-color: gray !important;
+      }
+  
+      &:active {
+        background-color: #600f6021;
+      }
+    }
   }
 }
 
@@ -27,17 +53,4 @@
   transform: translate(-50%, 0%);
   padding-bottom: 1em;
   background-color: rgb(36, 32, 32) !important;
-}
-
-.disabled {
-  background-color: #600f6021;
-  cursor: no-drop;
-
-  &:hover {
-    border-color: gray !important;
-  }
-
-  &:active {
-    background-color: #600f6021;
-  }
 }

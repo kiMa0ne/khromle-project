@@ -12,18 +12,12 @@ ul {
       .user-attempt-grid {
         transition: padding 0.4s;
 
-        // &:hover {
-        //    padding: 0.5em 1em
-        // }
-
         display: grid;
-        // border: solid white 1px;
         border-radius: 5px;
         grid-template-columns: auto auto auto auto auto auto;
         padding: 1px 5px 0;
       
         .user-attempt-item {
-          // border: 1px solid white;
           padding: 11px 1px 1px 1px;
           font-size: 15px;
           text-align: center;
@@ -31,23 +25,6 @@ ul {
       }
     }
 
-
-    // .user-attempt {
-    //   border: solid white 1px;
-    //   border-radius: 10px;
-    //   height: 60px;
-    //   width: 100%;
-
-    //   .user-attempt-char {
-    //     font-size: 20px;
-
-    //     &:first-child {
-    //       padding: 0;
-    //       width: fit-content;
-    //     }
-    //   }
-
-    // }
   }
 }
 

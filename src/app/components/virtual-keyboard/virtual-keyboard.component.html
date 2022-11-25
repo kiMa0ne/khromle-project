@@ -1,15 +1,23 @@
-<div class="keyboard-container">
+<div class="container mt-3">
   <div class="row">
     <div class="col-10">
       <div class="row">
-        <div class="col-4 input-button" (click)="handlePlayBack()">Del</div>
-        <div class="col-2 input-button" *ngFor="let inputBoxValue of availableInputs" (click)="handlePlayDigit(inputBoxValue)">
-          {{ inputBoxValue }}
+        <div class="col-4 px-0" (click)="handlePlayBack()">
+          <div class="input-button">
+            <i class="bi bi-arrow-left"></i>
+          </div>
+        </div>
+        <div class="col-2 px-0" *ngFor="let inputBoxValue of availableInputs" (click)="handlePlayDigit(inputBoxValue)">
+          <div class="input-button">
+            {{ inputBoxValue }}
+          </div>
         </div>
       </div>
     </div>
-    <div class="col-2 input-button" (click)="handlePlaySubmit()" [ngClass]="{'disabled': canSubmit()}">
-      Enter
+    <div class="col-2 px-0" (click)="handlePlaySubmit()">
+      <div class="input-button enter-button h-100 my-0 d-flex align-items-center justify-content-center" [ngClass]="{'disabled': canSubmit()}">
+        <i class="bi bi-arrow-return-left"></i>
+      </div>
     </div>
   </div>
 </div>

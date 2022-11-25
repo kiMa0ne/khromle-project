@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import ColorHash from 'color-hash'
 import { addUserAttempt, resetUserAttempts, setGameStatus, setSolution, setUserAttempts } from './store/game.actions';
 import { Store } from '@ngrx/store';
@@ -18,6 +18,8 @@ export class AppComponent implements OnInit{
   color = ''
 
   userString: string[] = []
+  
+  dialogDisplay = "none";
 
   public userAttempts$ = this.store.select(selectUserAttempts)
   userAttempts: any
@@ -28,6 +30,7 @@ export class AppComponent implements OnInit{
   private ngNavigatorShareService: NgNavigatorShareService
 
   @ViewChild(UserAttemptsComponent) userAttemptsComponent: UserAttemptsComponent
+  @ViewChild('closeBtn') closeModalButton: ElementRef
 
   constructor(private store: Store <GameState>, public toastr: ToastrService, ngNavigatorShareService: NgNavigatorShareService) {
     this.ngNavigatorShareService = ngNavigatorShareService
@@ -149,5 +152,16 @@ export class AppComponent implements OnInit{
     .catch( (error) => {
       console.log(error)
     })
+  }
+  
+  openPopup() {
+    this.dialogDisplay = "block";
+    console.log(this.closeModalButton)
+    setTimeout(() => {
+      this.closeModalButton.nativeElement.focus()
+    }, 0)
+  }
+  closePopup() {
+    this.dialogDisplay = "none";
   }
 }
