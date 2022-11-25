@@ -4,7 +4,7 @@
     <div class="col-12 col-md-4 container h-100">
       <div class="row">
         <div class="col-12 my-3 d-flex justify-content-center">
-          <i class="bi bi-info-circle mt-2 me-2" style="cursor: pointer; font-size: 20px;" (click)="openPopup()"></i>
+          <i class="bi bi-info-circle mt-2 me-2" style="cursor: pointer; font-size: 20px;" (click)="handleInfoButtonClick()"></i>
           <div class="title-box mt-2">
             <span style="color: #B83280;" >K</span>
             <span style="color: #3182ce;" >h</span>
@@ -27,8 +27,6 @@
           <app-color-item (handleShareVictory)="shareVictory()" class="w-100 mt-2"></app-color-item>
 
           <!-- {{ color }} -->
-
-          <!-- <button (click)="resetGuesses()">RESET BTN</button> -->
 
           <!-- USER GUESS TRIES -->
           <div class="col-12 mt-4 min-vh-50 play-container">
@@ -60,7 +58,7 @@
     <div class="modal-content">
       <div class="modal-header pb-1 ">
         <h2 class="modal-title mb-0">Welcome to Khromle</h2>
-        <button #closeBtn class="float-right close-modal-btn" (click)="closePopup()">X</button>
+        <button #closeBtn class="float-right close-modal-btn" (click)="handleInfoButtonClick()">X</button>
       </div>
       <div class="modal-body">
         <p class="mb-1">Khromle is a TAROKKATA of Chromle, a Wordl inspired game of colours! The objective is to guess the <b style="color: red">R</b><b style="color: green">G</b><b style="color: blue">B</b> code of the colour displayed in the central panel. 
@@ -160,7 +158,10 @@
           <span style="color: #F687B3; font-size: 20px; font-weight: bold;">l</span>
           <span style="color: #9F7AEA; font-size: 20px; font-weight: bold;">e</span>
         </a>
-        <button type="button" class="btn btn-success" (click)="closePopup()">
+
+        <button (click)="resetGuesses()">HARD RESET</button>
+
+        <button type="button" class="btn btn-success" (click)="handleInfoButtonClick()">
           Play!
         </button>
       </div>

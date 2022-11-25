@@ -11,7 +11,7 @@
   // margin: 1px;
 
   &:hover {
-    border-color: white;
+    // border-color: white;
     background-color: #812693;
      &.disabled {
       background-color: #600f6021;
@@ -22,6 +22,15 @@
 
   &:active {
     background-color: #932693;
+    animation-name: buttonPushed;
+    animation-duration: 0.2s;
+    // scale: 0.9;
+  }
+  @keyframes buttonPushed {
+    25% {scale: 0.8; } 
+    50% {scale: 0.7; } 
+    75% {scale: 0.9; } 
+    100% {scale: 1; } 
   }
 
   &.enter-button {

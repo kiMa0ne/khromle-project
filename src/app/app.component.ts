@@ -153,15 +153,16 @@ export class AppComponent implements OnInit{
       console.log(error)
     })
   }
-  
-  openPopup() {
-    this.dialogDisplay = "block";
-    console.log(this.closeModalButton)
-    setTimeout(() => {
-      this.closeModalButton.nativeElement.focus()
-    }, 0)
-  }
-  closePopup() {
-    this.dialogDisplay = "none";
+
+  handleInfoButtonClick() {
+    if (this.dialogDisplay === 'block') {
+      this.dialogDisplay = "none";
+    } else {
+      this.dialogDisplay = "block";
+      setTimeout(() => {
+        this.closeModalButton.nativeElement.focus()
+      }, 0)
+    }
+
   }
 }
