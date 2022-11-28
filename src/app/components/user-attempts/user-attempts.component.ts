@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { TextColorService } from 'src/app/services/textColor.service';
 import { GameState } from '../../store/game.reducer';
 import { selectGameSolution, selectUserAttempts } from '../../store/game.selectors';
 
@@ -21,12 +22,20 @@ export class UserAttemptsComponent implements OnInit {
   userAttempts
   public colorToGuess$ = this.store.select(selectGameSolution)
 
-  constructor(private store: Store<GameState>) {
+  // guessColorRedGroup 
+  // guessColorGreenGroup 
+  // guessColorBlueGroup 
+
+  constructor(private store: Store<GameState>, private textColorService: TextColorService) {
   }
 
   ngOnInit(): void {
     this.colorToGuess$.subscribe(colorToGuess => this.colorToGuess = colorToGuess)
     this.colorArray = this.colorToGuess.split("").slice(1)
+
+    // this.guessColorRedGroup = this.colorArray[0] + this.colorArray[1]
+    // this.guessColorGreenGroup = this.colorArray[2] + this.colorArray[3]
+    // this.guessColorBlueGroup = this.colorArray[4] + this.colorArray[5]
 
     this.userAttempts$.subscribe(userAttempts => this.userAttempts = userAttempts)
   }
@@ -34,20 +43,15 @@ export class UserAttemptsComponent implements OnInit {
   convertColorStringToArray(colorString: string) {
     return colorString.slice(1).split("")
   }
-  
-  // generateImage() {
-  //   const node: any = document.getElementById('userAttempts')
-  //   // this.dataService.generateImage(node)
-  //   htmlToImage.toPng(node).then(dataUrl => {
-  //       let img = new Image()
-  //       img.src = dataUrl
-  //       // console.log({img})
-  //   }).catch(error => {
-  //     console.error('Could not convert html to png', error)
-  //   })
-  // }
 
   getTipClassFromColorChar(colorString: string[], index: number) {
+
+    // if (index === 1 || index === 3 || index === 5) {
+    //   const groupToGuess = `${this.colorArray[index - 1]}${this.colorArray[index]}`
+    //   const userGroup = `${colorString[index - 1]}${colorString[index]}`
+      
+    // }
+
     const userCharIndex = this.inputValuesArray.indexOf(colorString[index])
     const correctCharIndex = this.inputValuesArray.indexOf(this.colorArray[index])
 
@@ -60,11 +64,9 @@ export class UserAttemptsComponent implements OnInit {
       case 3: return "bad-position-input"
       default: return "incorrect-input"
     }
-
   }
 
   generateCanvas() {
-
     let canvasElement = document.createElement('canvas') as  HTMLCanvasElement
     canvasElement.setAttribute("style", "width: 500px")
     canvasElement.height = this.userAttempts.length * 50
@@ -75,11 +77,13 @@ export class UserAttemptsComponent implements OnInit {
       ctx[i] = canvasElement?.getContext("2d");
       ctx[i].beginPath(); 
       ctx[i].fillStyle = this.userAttempts[i];
-      ctx[i].fillRect(0, (i)*50, window.innerWidth, 50);
+      ctx[i].fillRect(0, i * 50, window.innerWidth, 50);
     }
 
     return canvasElement
+  }
 
-    // document.body.appendChild(canvasElement)
+  getTextColor(hexColor){
+    return this.textColorService.getContrastYIQ(hexColor)
   }
 }

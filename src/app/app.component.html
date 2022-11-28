@@ -1,18 +1,19 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-12 col-md-4 container h-100">
+    <div class="col-12 col-lg-4 container h-100">
       <div class="row">
         <div class="col-12 my-3 d-flex justify-content-center">
           <i class="bi bi-info-circle mt-2 me-2" style="cursor: pointer; font-size: 20px;" (click)="handleInfoButtonClick()"></i>
-          <div class="title-box mt-2">
-            <span style="color: #B83280;" >K</span>
-            <span style="color: #3182ce;" >h</span>
-            <span style="color: #6B46C1;" >r</span>
-            <span style="color: #ECC94B;" >o</span>
-            <span style="color: #D69E2E;" >m</span>
-            <span style="color: #F687B3;" >l</span>
-            <span style="color: #9F7AEA;" >e</span>
+          <div class="title-box title-color mt-2">
+            Khromle
+            <!-- <span class="title-char-k" >K</span>
+            <span class="title-char-h" >h</span>
+            <span class="title-char-r" >r</span>
+            <span class="title-char-o" >o</span>
+            <span class="title-char-m" >m</span>
+            <span class="title-char-l" >l</span>
+            <span class="title-char-e" >e</span> -->
           </div>
         </div>
       </div>
@@ -33,7 +34,7 @@
             <app-user-attempts class="w-100"></app-user-attempts>
           </div>
 
-          <div class="col-12">
+          <div class="col-12 pb-2">
             <app-virtual-keyboard 
               *ngIf="gameStatus !== 'VICTORY'" 
               (handleInput)="handlePlayDigit($event)" 
@@ -67,9 +68,9 @@
         <div class="today-color" [style.background-color]="color"></div>
 
         <p class="mt-1">With each guess you will receive hints guiding you towards the answer in the form of colours under the groups (<b style="color: red">R</b>, <b style="color: green">G</b> and <b style="color: blue">B</b>) or the digits of your guess. 
-          <mark class="highlighted-color" style="background-color: green; font-size: 16px;"><b>GREEN</b></mark> groups are quite correct, and <mark class="highlighted-color" style="background-color: yellow; font-size: 16px;"><b>YELLOW</b></mark> groups are very, very close. <mark class="highlighted-color" style="background-color: orange; font-size: 16px;"><b>ORANGE</b></mark> ones mean they are practically the same number as the target group, 
-          while <mark class="highlighted-color" style="background-color: red; font-size: 16px;"><b>RED</b></mark> groups are a little off but still in reach. <mark class="highlighted-color" style="background-color: purple; font-size: 16px;"><b>PURPLE</b></mark> identifies digits that would have been or are correct in a different position but is only 
-          shown when no other hints are present for the digit or group in that position. <mark class="highlighted-color" style="background-color: white; font-size: 16px; color: black"><b>WHITE</b></mark> digits are entirely incorrect.
+          <mark class="highlighted-color" style="background-color: #48bb78; font-size: 16px;"><b>GREEN</b></mark> groups are quite correct, and <mark class="highlighted-color" style="background-color: #f6e05e; font-size: 16px;"><b>YELLOW</b></mark> groups are very, very close. <mark class="highlighted-color" style="background-color: orange; font-size: 16px;"><b>ORANGE</b></mark> ones mean they are practically the same number as the target group, 
+          while <mark class="highlighted-color" style="background-color: #f56565; font-size: 16px;"><b>RED</b></mark> groups are a little off but still in reach. <mark class="highlighted-color" style="background-color: #b794f4; font-size: 16px;"><b>PURPLE</b></mark> identifies digits that would have been or are correct in a different position but is only 
+          shown when no other hints are present for the digit or group in that position. <mark class="highlighted-color" style="background-color: #edf2f7; font-size: 16px; color: black"><b>WHITE</b></mark> digits are entirely incorrect.
         </p>
 
         <ul>

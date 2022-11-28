@@ -7,6 +7,7 @@ import { selectGameCurrentStatus, selectPersistance, selectUserAttempts } from '
 import { ToastrService } from 'ngx-toastr'
 import { NgNavigatorShareService } from 'ng-navigator-share';
 import { UserAttemptsComponent } from './components/user-attempts/user-attempts.component';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-root',
@@ -32,8 +33,13 @@ export class AppComponent implements OnInit{
   @ViewChild(UserAttemptsComponent) userAttemptsComponent: UserAttemptsComponent
   @ViewChild('closeBtn') closeModalButton: ElementRef
 
-  constructor(private store: Store <GameState>, public toastr: ToastrService, ngNavigatorShareService: NgNavigatorShareService) {
+  constructor(private store: Store <GameState>, public toastr: ToastrService, ngNavigatorShareService: NgNavigatorShareService, private cookieService: CookieService) {
     this.ngNavigatorShareService = ngNavigatorShareService
+
+    if (!this.cookieService.get('AlreadyVisited')) {
+      this.dialogDisplay = 'block'
+      this.cookieService.set('AlreadyVisited', 'true')
+    }
   }
 
   ngOnInit() {
@@ -41,7 +47,7 @@ export class AppComponent implements OnInit{
     this.gameStatus$.subscribe(gameStatus => this.gameStatus = gameStatus)
     this.userAttempts$.subscribe(userAttempts => this.userAttempts = userAttempts)
 
-    console.log("GAME SRTATUS: ",this.gameStatus)
+    console.log("GAME STATUS: ", this.gameStatus)
     // localStorage.clear()
     addEventListener('keydown', (event: KeyboardEvent) => {
       const userInput = event.key.toUpperCase()
@@ -59,9 +65,25 @@ export class AppComponent implements OnInit{
     this.color = this.colorHash.hex(dateString).toUpperCase()
     this.store.dispatch(setSolution({ solution: this.color }))
 
+    //CHECK IF IT IS A NEW GAME (Day has changed OR first time playing)
+    const gameCode = localStorage.getItem('gameCode')
+    if (gameCode) {
+      if (gameCode !== this.color) {
+        localStorage.setItem('gameCode', this.color)
+        this.store.dispatch(setGameStatus({ gameStatus: "" }))
+        localStorage.setItem('gameStatus', "")
+        this.store.dispatch(resetUserAttempts())
+        localStorage.setItem('userAttempts', "")
+      }
+    } else {
+      localStorage.setItem('gameCode', this.color)
+    }
+
+    // console.log(localStorage.getItem("gameCode"))
+
     //Initialize userAttempts from localStorage
     const localStorageUserAttemptsString = localStorage.getItem('userAttempts')
-    const localStorageUserAttempts = localStorageUserAttemptsString ? JSON.parse(localStorageUserAttemptsString) : null
+    const localStorageUserAttempts = localStorageUserAttemptsString && localStorageUserAttemptsString.length !== 0 ? JSON.parse(localStorageUserAttemptsString) : null
 
     if (localStorageUserAttempts) {
       this.store.dispatch(setUserAttempts({userAttempts: localStorageUserAttempts}))
@@ -76,6 +98,7 @@ export class AppComponent implements OnInit{
 
   resetGuesses() {
     this.store.dispatch(resetUserAttempts())
+    this.store.dispatch(setGameStatus({ gameStatus: "" }))
     localStorage.clear()
   }
 

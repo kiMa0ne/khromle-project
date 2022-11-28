@@ -1,4 +1,4 @@
-<div class="d-flex justify-content-center py-5 color-box" style="height: 150px" [ngStyle]="{ 'background-color': bgColor }">
+<div class="d-flex justify-content-center py-5 color-box" style="height: 150px" [ngStyle]="{ 'background-color': bgColor, 'color': getTextColor(bgColor)}">
   <span class="share-victory-box" *ngIf="gameStatus === 'VICTORY'" (click)="shareVictory()">
     <h1>Share!</h1>
   </span>

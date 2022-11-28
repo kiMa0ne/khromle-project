@@ -12,6 +12,7 @@ import { StoreModule } from '@ngrx/store';
 import { gameReducer } from './store/game.reducer';
 import { ToastrModule } from 'ngx-toastr';
 import { DataService } from './services/dataService.service';
+import { CookieService } from 'ngx-cookie-service';
 // import { CommonModule } from '@angular/common';
 
 @NgModule({
@@ -36,7 +37,7 @@ import { DataService } from './services/dataService.service';
       tapToDismiss: true
     }),
   ],
-  providers: [DataService],
+  providers: [DataService, CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

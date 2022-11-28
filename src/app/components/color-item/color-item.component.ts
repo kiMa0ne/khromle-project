@@ -4,6 +4,7 @@ import { GameState } from '../../store/game.reducer';
 import { selectGameCurrentStatus, selectPersistance } from '../../store/game.selectors';
 import { ToastrService } from 'ngx-toastr'
 import { NgNavigatorShareService } from 'ng-navigator-share';
+import { TextColorService } from 'src/app/services/textColor.service';
 
 @Component({
   selector: 'app-color-item',
@@ -26,7 +27,7 @@ export class ColorItemComponent implements OnInit {
   
   @Output() handleShareVictory = new EventEmitter<any>()
 
-  constructor(private store: Store<GameState>, public toastr: ToastrService, ngNavigatorShareService: NgNavigatorShareService) {
+  constructor(private store: Store<GameState>, public toastr: ToastrService, ngNavigatorShareService: NgNavigatorShareService, private textColorService: TextColorService) {
     this.ngNavigatorShareService = ngNavigatorShareService;
   }
 
@@ -41,22 +42,9 @@ export class ColorItemComponent implements OnInit {
 
   shareVictory() {
     this.handleShareVictory.emit()
+  }
 
-    // if (!this.ngNavigatorShareService.canShare()) {
-    //   alert(`This service/api is not supported in your Browser`)
-    //   return
-    // }
-
-    // this.ngNavigatorShareService.share({
-    //   title: 'I WON!!!',
-    //   text: `I beat the game after ${this.persistanceState.userAttempts.length} attempts`,
-    //   url: 'https://khromle-project.vercel.app/',
-    //   files: []
-    // }).then( (response) => {
-    //   console.log(response)
-    // })
-    // .catch( (error) => {
-    //   console.log(error)
-    // })
+  getTextColor(hexColor){
+    return this.textColorService.getContrastYIQ(hexColor)
   }
 }

@@ -1,8 +1,8 @@
 <div class="container">
   <ul class="row mb-0" #userAttempts id="userAttempts">
-    <li class="col-12 px-1 mt-2 user-attempt-list-item" *ngFor="let userAttempt of userAttempts$ | async; let i = index">
+    <li class="col-12 px-1 mt-2 user-attempt-list-item" *ngFor="let userAttempt of userAttempts$ | async">
       <div [style.background-color]="userAttempt" class="user-attempt-grid">
-        <div class="user-attempt-item" *ngFor="let colorChar of convertColorStringToArray(userAttempt); let j = index">
+        <div class="user-attempt-item" *ngFor="let colorChar of convertColorStringToArray(userAttempt); let j = index" [ngStyle]="{'color': getTextColor(userAttempt)}">
           <p>{{ colorChar }}</p>
           <div class="tip-box" [ngClass]="getTipClassFromColorChar(convertColorStringToArray(userAttempt), j)">
           </div>

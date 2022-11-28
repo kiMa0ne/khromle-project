@@ -5,9 +5,12 @@
   height: 40px;
 
   .input-box {
-    border: solid white 1px;
+    border: solid rgba(165, 158, 158, 0.623) 1px;
     margin-left: 5px;
     border-radius: 8px;
     font-size: 20px;
+    
+    box-shadow: 0px 2px 4px rgba(165, 158, 158, 0.623);
+    
   }
 }
