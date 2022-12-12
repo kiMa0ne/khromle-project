@@ -273,14 +273,8 @@
 
   .phrase-container {
     position: absolute;
-    top: 50%; 
-    left: 50%;
-    margin: auto;
-    transform: translate(-50%, 0%);
-    // text-align: center;
     visibility: hidden;
-    // height: 100vh;
-    // width: 100%;
+    line-height: 1em;
   }
 
   .phrase-1 {

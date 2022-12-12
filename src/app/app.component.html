@@ -1,4 +1,4 @@
-<div class="initial-visual-meme-container">
+<div *ngIf="gameStatus !== 'VICTORY'" class="initial-visual-meme-container d-flex justify-content-center align-items-center">
   <div class="phrase-container phrase-1">Mom, can we have 
     <span style="color: #B83280; font-weight: bold;">C</span>
     <span style="color: #3182ce; font-weight: bold;">h</span>
@@ -7,7 +7,7 @@
     <span style="color: #D69E2E; font-weight: bold;">m</span>
     <span style="color: #F687B3; font-weight: bold;">l</span>
     <span style="color: #9F7AEA; font-weight: bold;">e</span>?</div> 
-  <div class="phrase-container phrase-2">Mom: We have Chromle at home</div>
+  <div class="phrase-container phrase-2">Mom:<br> We have Chromle at home</div>
   <div class="phrase-container phrase-3">Chromle at home:</div>
 </div>
 
