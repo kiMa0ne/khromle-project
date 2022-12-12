@@ -45,13 +45,6 @@ export class UserAttemptsComponent implements OnInit {
   }
 
   getTipClassFromColorChar(colorString: string[], index: number) {
-
-    // if (index === 1 || index === 3 || index === 5) {
-    //   const groupToGuess = `${this.colorArray[index - 1]}${this.colorArray[index]}`
-    //   const userGroup = `${colorString[index - 1]}${colorString[index]}`
-      
-    // }
-
     const userCharIndex = this.inputValuesArray.indexOf(colorString[index])
     const correctCharIndex = this.inputValuesArray.indexOf(this.colorArray[index])
 
@@ -59,9 +52,10 @@ export class UserAttemptsComponent implements OnInit {
 
     switch(result) {
       case 0: return "correct-input"
-      case 1: return "very-very-close-input"
-      case 2: return "very-close-input"
-      case 3: return "bad-position-input"
+      case 1: return "very-close-input"
+      case 2: return "close-input"
+      case 3: return "far-input"
+      case 4: return "very-far-input"
       default: return "incorrect-input"
     }
   }

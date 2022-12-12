@@ -1,3 +1,15 @@
+<div class="initial-visual-meme-container">
+  <div class="phrase-container phrase-1">Mom, can we have 
+    <span style="color: #B83280; font-weight: bold;">C</span>
+    <span style="color: #3182ce; font-weight: bold;">h</span>
+    <span style="color: #6B46C1; font-weight: bold;">r</span>
+    <span style="color: #ECC94B; font-weight: bold;">o</span>
+    <span style="color: #D69E2E; font-weight: bold;">m</span>
+    <span style="color: #F687B3; font-weight: bold;">l</span>
+    <span style="color: #9F7AEA; font-weight: bold;">e</span>?</div> 
+  <div class="phrase-container phrase-2">Mom: We have Chromle at home</div>
+  <div class="phrase-container phrase-3">Chromle at home:</div>
+</div>
 
 <div class="container">
   <div class="row">
@@ -62,28 +74,27 @@
         <button #closeBtn class="float-right close-modal-btn" (click)="handleInfoButtonClick()">X</button>
       </div>
       <div class="modal-body">
-        <p class="mb-1">Khromle is a TAROKKATA of Chromle, a Wordl inspired game of colours! The objective is to guess the <b style="color: red">R</b><b style="color: green">G</b><b style="color: blue">B</b> code of the colour displayed in the central panel. 
+        <p class="mb-1">Khromle is a TAROKKATA of Chromle, a Wordl inspired game of colours! The objective is to guess the <b style="color: #F56565">R</b><b style="color: #48BB78">G</b><b style="color: #3182ce">B</b> code of the colour displayed in the central panel. 
           Every day you will be given a new colour to guess. Today's colour is
         </p>
         <div class="today-color" [style.background-color]="color"></div>
 
-        <p class="mt-1">With each guess you will receive hints guiding you towards the answer in the form of colours under the groups (<b style="color: red">R</b>, <b style="color: green">G</b> and <b style="color: blue">B</b>) or the digits of your guess. 
-          <mark class="highlighted-color" style="background-color: #48bb78; font-size: 16px;"><b>GREEN</b></mark> groups are quite correct, and <mark class="highlighted-color" style="background-color: #f6e05e; font-size: 16px;"><b>YELLOW</b></mark> groups are very, very close. <mark class="highlighted-color" style="background-color: orange; font-size: 16px;"><b>ORANGE</b></mark> ones mean they are practically the same number as the target group, 
-          while <mark class="highlighted-color" style="background-color: #f56565; font-size: 16px;"><b>RED</b></mark> groups are a little off but still in reach. <mark class="highlighted-color" style="background-color: #b794f4; font-size: 16px;"><b>PURPLE</b></mark> identifies digits that would have been or are correct in a different position but is only 
-          shown when no other hints are present for the digit or group in that position. <mark class="highlighted-color" style="background-color: #edf2f7; font-size: 16px; color: black"><b>WHITE</b></mark> digits are entirely incorrect.
+        <p class="mt-1">With each guess you will receive hints guiding you towards the answer in the form of the digits of your guess. 
+          <mark class="highlighted-color" style="background-color: #48bb78; font-size: 16px;"><b>GREEN</b></mark> is correct, and <mark class="highlighted-color" style="background-color: #f6e05e; font-size: 16px;"><b>YELLOW</b></mark> is  very, very close. <mark class="highlighted-color" style="background-color: orange; font-size: 16px;"><b>ORANGE</b></mark> means it is quite close to the correct digit, 
+          while <mark class="highlighted-color" style="background-color: #f56565; font-size: 16px;"><b>RED</b></mark> is a bit far from the correct one. <mark class="highlighted-color" style="background-color: #b794f4; font-size: 16px;"><b>PURPLE</b></mark> identifies digits that are far away from being correct and <mark class="highlighted-color" style="background-color: #edf2f7; font-size: 16px; color: black"><b>WHITE</b></mark> digits are entirely incorrect.
         </p>
 
         <ul>
           <li class="col-12 px-1 mt-2 user-attempt-list-item">
-            <div style="background-color: #FA3436" class="user-attempt-grid">
+            <div style="background-color: #FA3912" class="user-attempt-grid">
               <div class="user-attempt-item">
                 <p>F</p>
-                <div class="tip-box very-very-close-input">
+                <div class="tip-box correct-input">
                 </div>
               </div>
               <div class="user-attempt-item">
                 <p>A</p>
-                <div class="tip-box very-very-close-input">
+                <div class="tip-box very-close-input">
                 </div>
               </div>
               <div class="user-attempt-item">
@@ -92,18 +103,18 @@
                 </div>
               </div>
               <div class="user-attempt-item">
-                <p>4</p>
-                <div class="tip-box bad-position-input">
+                <p>9</p>
+                <div class="tip-box close-input">
                 </div>
               </div>
               <div class="user-attempt-item">
-                <p>3</p>
-                <div class="tip-box very-close-input">
+                <p>1</p>
+                <div class="tip-box far-input">
                 </div>
               </div>
               <div class="user-attempt-item">
-                <p>6</p>
-                <div class="tip-box very-close-input">
+                <p>2</p>
+                <div class="tip-box very-far-input">
                 </div>
               </div>
             </div>

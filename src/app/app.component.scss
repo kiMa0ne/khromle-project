@@ -15,12 +15,16 @@
   overflow-x: hidden;
   &::-webkit-scrollbar {
     width: 0.5em;
-    background-color: rgb(83, 59, 74);
+    // background-color: rgb(83, 59, 74);
     border-radius: 5px;
+
   }
   &::-webkit-scrollbar-thumb {
     background-color: rgb(23, 180, 201);
     border-radius: 5px;
+    &:active {
+      border: solid gray 1px;
+    }
   }
 }
 
@@ -90,7 +94,7 @@
       .modal-body {
         .today-color {
           width: 100%; 
-          height: 40px;
+          height: 50px;
           border-radius: 5px;
         }
 
@@ -134,27 +138,6 @@
     }
   }
 }
-        
-.tip-box {
-  width: 100%;
-  height: 10px;
-  
-  &.incorrect-input {
-    background-color: white;
-  }
-  &.correct-input {
-    background-color: green;
-  }
-  &.bad-position-input {
-    background-color: purple;
-  }
-  &.very-close-input {
-    background-color: red;
-  }
-  &.very-very-close-input {
-    background-color: orange;
-  }
-}     
 
 .title-color {
   animation: colorChangeK 6s infinite;
@@ -266,3 +249,67 @@
 //     100% { color: #9F7AEA }
 //   }
 // }
+
+.initial-visual-meme-container {
+  height: 0;
+  width: 100%;
+  background-color:  rgb(36, 32, 32) !important;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  color: white;
+  font-size: 2em;
+  z-index: 1056;
+
+  animation: slide-up-container 4.5s linear;
+
+  @keyframes slide-up-container {
+    0% { height: 100vh; }
+    40% { height: 100vh; }
+    90% { height: 100vh; }
+    100% { height: 0; }
+  }
+
+  .phrase-container {
+    position: absolute;
+    top: 50%; 
+    left: 50%;
+    margin: auto;
+    transform: translate(-50%, 0%);
+    // text-align: center;
+    visibility: hidden;
+    // height: 100vh;
+    // width: 100%;
+  }
+
+  .phrase-1 {
+    animation: phrase1 2s linear;
+    @keyframes phrase1 {
+      25% { opacity: 0.8;} 
+      50% { opacity: 0.4;} 
+      75% { opacity: 0.2;} 
+      100% { opacity: 0; visibility: visible; } 
+    }
+  }
+  .phrase-2 {
+    animation: phrase2 2s 2s linear;
+    visibility: hidden;
+    @keyframes phrase2 {
+      25% { opacity: 0.8;} 
+      50% { opacity: 0.4;} 
+      75% { opacity: 0.2;} 
+      100% { opacity: 0; visibility: visible; } 
+    }
+  }
+  .phrase-3 {
+    animation: phrase3 1.8s 4s linear;
+    visibility: hidden;
+    @keyframes phrase3 {
+      25% { opacity: 0.8;} 
+      50% { opacity: 0.4;} 
+      75% { opacity: 0.2;} 
+      100% { opacity: 0; visibility: visible; }
+    }
+  }
+}

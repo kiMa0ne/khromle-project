@@ -70,8 +70,10 @@ export class AppComponent implements OnInit{
     if (gameCode) {
       if (gameCode !== this.color) {
         localStorage.setItem('gameCode', this.color)
+
         this.store.dispatch(setGameStatus({ gameStatus: "" }))
         localStorage.setItem('gameStatus', "")
+
         this.store.dispatch(resetUserAttempts())
         localStorage.setItem('userAttempts', "")
       }
